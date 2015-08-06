@@ -1,0 +1,11 @@
+<temp interval="5000"/>
+<newtworkCastClient>
+<send header="{header}" temp="{temp}"/>
+</networkCastClient>
+<datastore>
+<set store="temp" tag="{header}" val="{temp}"/>
+</datastore>
+<log>
+<set store="temp" tag="{header}" temp="{temp}"/>
+</log>
+</temp>

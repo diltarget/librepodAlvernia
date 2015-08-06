@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Information Page</title>
+		<script src="/socket.io/socket.io.js"></script>    <!--Imports socket.io to allow it to connect to socket and recieve data-->
+	</head>
+
+	<body>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script> <!--Imports jquery for easier coding later on-->
+		<script> 
+			var socket = io.connect(); //connects html page to socket set up by index2.js 
+			socket.on('info', function(info){
+			    document.body.innerHTML = '';
+				Object.keys(info).forEach(function(key){
+				    document.write(key+": "+info[key]);
+				}
+			});
+		</script>
+
+</html>

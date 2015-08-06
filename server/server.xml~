@@ -1,0 +1,10 @@
+<networkCastServer port="6666">
+<datastore>
+<set store="temp" tag="{header}" val="{temp}"/>
+</datastore>
+<log>
+<set store="temp" tag="{header}" temp="{temp}"/>
+</log>
+<routine>
+<compare exp1="{temp}" exp2="10" less="[mail send]" to="adam.heinze@alvernia.edu" subject="temperature too low" text="device {header} is at {temp}"/>
+<compare exp1="10

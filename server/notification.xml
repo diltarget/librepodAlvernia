@@ -1,0 +1,5 @@
+<timer interval="600000">
+<mail>
+<send to="adam.heinze@alvernia.edu" subject="system is working" text="system is working"/>
+</mail>
+</timer>

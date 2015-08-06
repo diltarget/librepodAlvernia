@@ -1,0 +1,15 @@
+#!/bin/bash
+cd
+echo "while :" >> ~/.profile
+echo "do" >> ~/.profile
+echo "cd" >> ~/.profile
+echo "cd librepodAlvernia" >> ~/.profile
+if ["$1" -eq "server"]
+then
+echo "node server.js" >> ~/.profile
+mv server script
+else
+echo "librepod" >> ~/.profile
+mv client script
+fi
+echo "done" >> ~/.profile
