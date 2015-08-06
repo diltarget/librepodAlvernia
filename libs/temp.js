@@ -17,9 +17,11 @@ exports.event = function(o,callback){
 
     var config = librepod.config.list("temp");
 
-    Object.keys(config,function(key){
-	id[config[key]] = key;
-    });
+    if(typeof config === "object"){
+    	Object.keys(config,function(key){
+		id[config[key]] = key;
+    	});
+    }
     
     exec("sudo modprobe w1-gpio",function(){
         exec("sudo modprobe w1-therm",function(){
