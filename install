@@ -4,6 +4,7 @@ echo "while :" >> ~/.profile
 echo "do" >> ~/.profile
 echo "cd" >> ~/.profile
 echo "cd librepodAlvernia" >> ~/.profile
+cd librepodAlvernia
 if ["$1" -eq "server"]
 then
 echo "node server.js" >> ~/.profile
