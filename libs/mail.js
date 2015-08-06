@@ -8,7 +8,7 @@ exports.auth = function(o,callback){
 	transporter = nodemailer.createTransport({
 		service: 'Gmail',
 		auth: {
-			user: o.user
+			user: o.user,
 			pass: o.pass
 		}
 	});
