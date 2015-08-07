@@ -1,5 +1,5 @@
 var exec = require('child_process').exec;
-var dir = require('node-dir');
+var fs = require('fs');
 var librepod = require('librepod');
 
 var dirname = '/sys/bus/w1/devices/'
@@ -26,11 +26,10 @@ exports.event = function(o,callback){
     exec("sudo modprobe w1-gpio",function(){
         exec("sudo modprobe w1-therm",function(){
             setInterval(function(){
-                dir.subdirs(dirname, function(err, subdir) {
+                fs.readdir(dirname, function(err, subdir) {
                     if (err) throw err;
-
 		    Object.keys(subdir).forEach(function(k){
-                    	if(subdir[k].replace(dirname,"").substring(0,2) != "28") return; 
+                    	if(subdir[k].substring(0,2) != "28") return; 
                     	readTemp(id,subdir[k],callback);
 		    });
                 });
@@ -44,9 +43,9 @@ exports.event = function(o,callback){
 }
 
 function readTemp(id, sub, callback){
-    fs.readFile(sub+'/w1_slave','utf-8',function(err,html){
-        if (err) throw err;
-        var temp =  parseFloat(html.split("t=")[1])/1000.0;
+    fs.readFile(dirname+sub+'/w1_slave','utf-8',function(err,html){
+        if (err) return;
+        var temp =  parseFloat(html.toString().split("t=")[1])/1000.0;
         var header = sub.substring(3);
         
         if(id[header] == undefined){
