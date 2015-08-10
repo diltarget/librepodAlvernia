@@ -28,11 +28,16 @@ exports.event = function(o,callback){
             setInterval(function(){
                 dir.subdirs(dirname, function(err, subdir) {
                     if (err) throw err;
-
+		    var dev = [];
 		    Object.keys(subdir).forEach(function(k){
                     	if(subdir[k].replace(dirname,"").substring(0,2) != "28") return; 
-                    	readTemp(id,subdir[k],callback);
+			dev.push(subdir[k]);
+                    	//readTemp(id,subdir[k],callback);
 		    });
+		    
+		    for(var i=0; i < dev.length; i++){
+			setTimeout(readTemp(id,dev[i],callback),o.interval*i/dev.length);
+		    }
                 });
 		
             },parseInt(o.interval));

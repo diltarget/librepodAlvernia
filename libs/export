@@ -1,0 +1,7 @@
+#!/bin/bash
+sqlite3 localdata <<!
+.headers on
+.mode csv
+.output out.csv
+SELECT * FROM localdata;
+!
